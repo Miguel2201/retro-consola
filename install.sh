@@ -24,7 +24,7 @@ mkdir -p /home/pi/.mednafen
 # Esto asegura que la consola tenga algo que jugar al terminar
 echo "[+] Descargando juegos Homebrew de ejemplo..."
 cd /home/pi/roms
-cp -r roms/* /home/pi/ROMS/
+cp -r roms/* /home/pi/roms/
 
 # Volver a la raíz del instalador
 cd -
@@ -69,7 +69,7 @@ grep -qxF 'dtparam=audio=on' $CONFIG || echo 'dtparam=audio=on' | sudo tee -a $C
 
 # 7. PERMISOS FINALES
 echo "[+] Ajustando permisos de usuario..."
-chown -R pi:pi /home/pi/ROMS
+chown -R pi:pi /home/pi/roms
 chown -R pi:pi /home/pi/splash
 chown -R pi:pi /home/pi/.mednafen
 chown pi:pi /home/pi/lanzador.py
