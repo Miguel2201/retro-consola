@@ -9,7 +9,7 @@ import pyudev
 import subprocess as sp
 
 # --- Configuracion ---
-RUTA_ROMS = os.path.expanduser('~/roms')
+RUTA_ROMS = os.path.expanduser('~/retro-consola/roms')
 EXTENSIONES_VALIDAS = ['.nes', '.sfc', '.smc', '.gba']
 RUTA_MEDNAFEN = '/usr/games/mednafen' 
 

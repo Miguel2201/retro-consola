@@ -5,8 +5,8 @@ After=local-fs.target
 
 [Service]
 Type=oneshot
-ExecStartPre=/usr/bin/fbi -T 1 -d /dev/fb0 --noverbose -a /home/pi/splash/logo.png
-ExecStart=/usr/bin/mpg123 /home/pi/splash/sonido.mp3
+ExecStartPre=/usr/bin/fbi -T 1 -d /dev/fb0 --noverbose -a /home/pi/retro-consola/assets/logo.png
+ExecStart=/usr/bin/mpg123 /home/pi/retro-consola/assets/sonido.mp3
 
 [Install]
 WantedBy=sysinit.target

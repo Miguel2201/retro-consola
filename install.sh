@@ -16,33 +16,17 @@ sudo apt-get install -y python3-pygame mednafen fbi mpg123 joystick pmount git w
 
 # 2. PREPARAR CARPETAS
 echo "[+] Creando directorios en /home/pi..."
-mkdir -p /home/pi/roms
-mkdir -p /home/pi/splash
 mkdir -p /home/pi/.mednafen
 
-# 3. DESCARGAR JUEGOS DE EJEMPLO (HOMEBREW/LEGALES)
-# Esto asegura que la consola tenga algo que jugar al terminar
-echo "[+] Descargando juegos Homebrew de ejemplo..."
-cd /home/pi/roms
-cp -r roms/* /home/pi/roms/
 
-# Volver a la raíz del instalador
-cd -
-
-# 4. COPIAR ARCHIVOS DEL PROYECTO
+# 3. COPIAR ARCHIVOS DEL PROYECTO
 echo "[+] Instalando archivos del sistema..."
 
-# Copiar lanzador
-cp lanzador.py /home/pi/
-chmod +x /home/pi/lanzador.py
-
-# Copiar assets
-cp assets/logo.png /home/pi/splash/
-cp assets/sonido.mp3 /home/pi/splash/
+chmod +x /home/pi/retro-consola/lanzador.py
 
 # Copiar configuración de Mednafen
 if [ -f "config/mednafen.cfg" ]; then
-    cp config/mednafen.cfg /home/pi/.mednafen/
+    cp /home/pi/retro-consola/config/mednafen.cfg /home/pi/.mednafen/
     echo "[OK] Configuración de Mednafen cargada."
 else
     echo "[!] ADVERTENCIA: No se encontró mednafen.cfg, se usará el default."
@@ -50,8 +34,8 @@ fi
 
 # 5. CONFIGURAR SERVICIOS DE ARRANQUE
 echo "[+] Configurando arranque automático..."
-sudo cp services/splash-screen.service /etc/systemd/system/
-sudo cp services/lanzador.service /etc/systemd/system/
+sudo cp /home/pi/retro-consola/services/splash-screen.service /etc/systemd/system/
+sudo cp /home/pi/retro-consola/services/lanzador.service /etc/systemd/system/
 
 sudo systemctl daemon-reload
 sudo systemctl enable splash-screen.service
@@ -69,10 +53,10 @@ grep -qxF 'dtparam=audio=on' $CONFIG || echo 'dtparam=audio=on' | sudo tee -a $C
 
 # 7. PERMISOS FINALES
 echo "[+] Ajustando permisos de usuario..."
-chown -R pi:pi /home/pi/roms
-chown -R pi:pi /home/pi/splash
+chown -R pi:pi /home/pi/retro-consola/roms
+chown -R pi:pi /home/pi/retro-consola/assets
 chown -R pi:pi /home/pi/.mednafen
-chown pi:pi /home/pi/lanzador.py
+chown pi:pi /home/pi/retro-consola/lanzador.py
 
 echo "============================================="
 echo "✅ INSTALACIÓN COMPLETADA"
