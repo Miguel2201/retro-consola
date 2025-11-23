@@ -22,7 +22,7 @@ Una consola de videojuegos retro implementada en Raspberry Pi con emulación med
 
 1. Clona el repositorio:
 ```bash
-git clone https://github.com/tu-usuario/retro-consola.git
+git clone git@github.com:Miguel2201/retro-consola.git
 
 cd retro-consola
 
