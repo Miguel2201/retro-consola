@@ -6,13 +6,13 @@
 
 set -e # Detener si hay error
 
-echo "🎮 Iniciando instalación..."
+echo " Iniciando instalación..."
 
 # 1. INSTALAR DEPENDENCIAS
 echo "[+] Instalando sistema base..."
 sudo apt-get update
 # Agregamos 'wget' para descargar juegos y 'pmount' para tu script de python
-sudo apt-get install -y python3-pygame mednafen fbi mpg123 joystick pmount git wget
+sudo apt-get install -y python3-pygame python3-pyudev mednafen fbi mpg123 joystick pmount git wget
 
 # 2. PREPARAR CARPETAS
 echo "[+] Creando directorios en /home/pi..."

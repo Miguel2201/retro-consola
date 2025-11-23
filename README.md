@@ -14,7 +14,7 @@ Una consola de videojuegos retro implementada en Raspberry Pi con emulación med
 ## Requisitos
 
 - Raspberry Pi (modelos 3B+ o superior recomendados)
-- Raspbian Lite o Full (instalación limpia)
+- Raspbian Lite
 - Gamepad USB compatible
 - Almacenamiento: mínimo 8GB
 
@@ -22,6 +22,8 @@ Una consola de videojuegos retro implementada en Raspberry Pi con emulación med
 
 1. Clona el repositorio:
 ```bash
+sudo apt install git -y
+
 git clone https://github.com/Miguel2201/retro-consola.git
 
 cd retro-consola
