@@ -14,15 +14,9 @@ sudo apt-get update
 # Agregamos 'wget' para descargar juegos y 'pmount' para tu script de python
 sudo apt-get install -y python3-pygame python3-pyudev mednafen fbi mpg123 joystick pmount git wget
 
-# 2. PREPARAR CARPETAS
-echo "[+] Creando directorios en /home/pi..."
-mkdir -p /home/pi/.mednafen
-
 
 # 3. COPIAR ARCHIVOS DEL PROYECTO
 echo "[+] Instalando archivos del sistema..."
-
-chmod +x /home/pi/retro-consola/lanzador.py
 
 # Copiar configuración de Mednafen
 if [ -f "config/mednafen.cfg" ]; then
@@ -37,9 +31,7 @@ echo "[+] Configurando arranque automático..."
 sudo cp /home/pi/retro-consola/services/splash-screen.service /etc/systemd/system/
 sudo cp /home/pi/retro-consola/services/lanzador.service /etc/systemd/system/
 
-sudo systemctl daemon-reload
-sudo systemctl enable splash-screen.service
-sudo systemctl enable lanzador.service
+
 
 # 6. AJUSTES DE PANTALLA (Centrado y Resolución)
 echo "[+] Forzando resolución 1080p y corrigiendo bordes..."
@@ -53,13 +45,20 @@ grep -qxF 'dtparam=audio=on' $CONFIG || echo 'dtparam=audio=on' | sudo tee -a $C
 
 # 7. PERMISOS FINALES
 echo "[+] Ajustando permisos de usuario..."
+chmod +x /home/pi/retro-consola/lanzador.py
 chown -R pi:pi /home/pi/retro-consola/roms
 chown -R pi:pi /home/pi/retro-consola/assets
 chown -R pi:pi /home/pi/.mednafen
 chown pi:pi /home/pi/retro-consola/lanzador.py
+usermod -aG plugdev pi
+usermod -aG video,input,tty pi
+
+sudo systemctl daemon-reload
+sudo systemctl enable splash-screen.service
+sudo systemctl enable lanzador.service
 
 echo "============================================="
-echo "✅ INSTALACIÓN COMPLETADA"
+echo " INSTALACIÓN COMPLETADA"
 echo "   - Juegos de prueba descargados."
 echo "   - Detección USB configurada en el lanzador."
 echo "============================================="
