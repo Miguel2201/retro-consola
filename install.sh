@@ -35,7 +35,7 @@ sudo cp /home/pi/retro-consola/services/lanzador.service /etc/systemd/system/
 
 # 6. AJUSTES DE PANTALLA (Centrado y Resolución)
 echo "[+] Forzando resolución 1080p y corrigiendo bordes..."
-CONFIG="/boot/config.txt"
+CONFIG="/boot/firmaware/config.txt"
 # Desactiva overscan y fuerza HDMI
 grep -qxF 'disable_overscan=1' $CONFIG || echo 'disable_overscan=1' | sudo tee -a $CONFIG
 grep -qxF 'hdmi_group=2' $CONFIG || echo 'hdmi_group=2' | sudo tee -a $CONFIG
@@ -50,8 +50,8 @@ chown -R pi:pi /home/pi/retro-consola/roms
 chown -R pi:pi /home/pi/retro-consola/assets
 chown -R pi:pi /home/pi/.mednafen
 chown pi:pi /home/pi/retro-consola/lanzador.py
-usermod -aG plugdev pi
-usermod -aG video,input,tty pi
+sudo usermod -aG plugdev pi
+sudo usermod -aG video,input,tty pi
 
 sudo systemctl daemon-reload
 sudo systemctl enable splash-screen.service
